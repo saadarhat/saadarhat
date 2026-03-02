@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="style.css">
+    <title>Saad Farhat | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Saad Farhat, Computer Engineering Student focused on mobile development, cybersecurity, and AI tools."
+    />
+  </head>
+  <body>
+    <header class="topbar" id="top">
+      <nav class="nav container" aria-label="Main navigation">
+        <a href="#top" class="brand">Saad Farhat</a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="mobile-menu">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section container" aria-label="Hero section">
+        <div class="avatar" role="img" aria-label="Illustration avatar of Saad Farhat">SF</div>
+        <p class="eyebrow">Computer Engineering Student (Computer Science)</p>
+        <h1>Saad Farhat</h1>
+        <p class="hero-focus">Mobile Development • Cybersecurity • AI Tools</p>
+        <p class="hero-bio">
+          I’m Saad Farhat, a 3rd-year computer engineering student focused on mobile app
+          development and cybersecurity. I’m always learning and building practical
+          projects.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">My Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact</a>
+        </div>
+      </section>
+
+      <section class="section container" aria-label="Welcome card">
+        <article class="card welcome-card">
+          <h2>Welcome</h2>
+          <p>
+            Thanks for visiting my portfolio. I enjoy turning ideas into useful digital
+            products, experimenting with secure systems, and continuously improving my
+            skills through hands-on projects.
+          </p>
+        </article>
+      </section>
+
+      <section class="section container" id="projects" aria-label="Projects section">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>A selection of what I’m building and exploring.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="card project-card">
+            <h3>Équilibre Thérapie (Mobile App)</h3>
+            <p>Flutter + Firebase + AI features for a wellness-focused mobile experience.</p>
+          </article>
+
+          <article class="card project-card">
+            <h3>Greffe</h3>
+            <p>A software engineering project designed with collaboration and structure in mind.</p>
+          </article>
+
+          <article class="card project-card">
+            <h3>Social Media Automation Tools</h3>
+            <p>
+              Automation utilities to streamline repetitive posting and management workflows.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <h3>Cybersecurity Lab Notes</h3>
+            <p>Practical lab documentation for security concepts, testing, and learning.</p>
+          </article>
+
+          <article class="card project-card">
+            <h3>Portfolio Website</h3>
+            <p>A clean personal site to showcase work, interests, and contact details.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="contact" aria-label="Contact section">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Let’s connect and build something useful.</p>
+        </div>
+
+        <div class="contact-layout">
+          <article class="card contact-info">
+            <h3>Get in touch</h3>
+            <ul>
+              <li>
+                <strong>Email:</strong>
+                <a href="mailto:saad.farhat@email.com">saad.farhat@email.com</a>
+              </li>
+              <li>
+                <strong>LinkedIn:</strong>
+                <a href="https://linkedin.com/in/saadfarhat" target="_blank" rel="noreferrer">
+                  linkedin.com/in/saadfarhat
+                </a>
+              </li>
+              <li>
+                <strong>GitHub:</strong>
+                <a href="https://github.com/saadfarhat" target="_blank" rel="noreferrer">
+                  github.com/saadfarhat
+                </a>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card contact-form-wrap">
+            <h3>Send a message</h3>
+            <form id="contact-form" novalidate>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+
+              <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> Saad Farhat. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const toggleBtn = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      toggleBtn.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (event) => {
+          const targetId = anchor.getAttribute('href');
+          if (!targetId || targetId === '#') return;
+
+          const target = document.querySelector(targetId);
+          if (!target) return;
+
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          navLinks.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const form = document.getElementById('contact-form');
+      const feedback = document.getElementById('form-feedback');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !email || !message) {
+          feedback.textContent = 'Please fill in all fields.';
+          feedback.className = 'form-feedback error';
+          return;
+        }
+
+        if (!emailPattern.test(email)) {
+          feedback.textContent = 'Please enter a valid email address.';
+          feedback.className = 'form-feedback error';
+          return;
+        }
+
+        feedback.textContent = 'Thanks! Your message has been validated on the front end.';
+        feedback.className = 'form-feedback success';
+        form.reset();
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
